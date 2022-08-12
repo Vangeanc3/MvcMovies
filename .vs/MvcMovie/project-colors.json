@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "bc1bdaf0-3196-4ce2-b7c1-2eff04fd838a": {
+      "ProjectGuid": "bc1bdaf0-3196-4ce2-b7c1-2eff04fd838a",
+      "DisplayName": "MvcMovie",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
