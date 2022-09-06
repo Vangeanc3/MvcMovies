@@ -1,0 +1,41 @@
+﻿@model MvcMovie.Models.Cadastro
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Criar</h1>
+
+<h4>Cadastro</h4>
+
+<hr/>
+
+<div>
+    <div>
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div class="campos">
+                <label asp-for="Nome"/>
+                <input asp-for="Nome" />
+                <span asp-validation-for="Nome"></span>
+            </div>
+            <div class="campos">
+                <label asp-for="Assunto"/>
+                <input asp-for="Assunto" />
+                <span asp-validation-for="Assunto"></span>
+            </div>
+            <div class="campos">
+                <label asp-for="Proposta"/>
+                <input asp-for="Proposta"/>
+                <span asp-validation-for="Proposta"></span>
+            </div>
+            <div class="campos">
+                <input value="Create" type="submit"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

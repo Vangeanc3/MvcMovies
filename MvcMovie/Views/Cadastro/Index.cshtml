@@ -1,0 +1,39 @@
+﻿@model IEnumerable<MvcMovie.Models.Cadastro>
+
+@{
+    ViewData["Title"] = "Cadastro";
+}
+
+<h1>Cadastro</h1>
+
+<p> 
+    <a asp-controller="Cadastro" asp-action="Create">Criar um novo Cadastro</a> 
+</p>
+
+<table class="table  ">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Nome)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

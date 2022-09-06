@@ -1,11 +1,41 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using MvcMovie.Data;
+using MvcMovie.Models;
+
 var builder = WebApplication.CreateBuilder(args);
+
+//builder.Services.AddDbContext<MvcMovieContext>(options =>
+//    options.UseSqlServer(builder.Configuration.GetConnectionString("MvcMovieContext") ?? throw new InvalidOperationException("Connection string 'MvcMovieContext' not found.")));
+
+builder.Services.AddDbContext<MvcMovieContext>(opt =>
+    opt.UseMySql(builder.Configuration.GetConnectionString("cadastroConnection"),
+        new MySqlServerVersion(new Version(8, 0))));
+
+builder.Services.AddDbContext<CadastroContext>(opt =>
+    opt.UseMySql(builder.Configuration.GetConnectionString("cadastroConnection"),
+        new MySqlServerVersion(new Version(8, 0))));
+
+builder.Services.AddDbContext<GerenteContext>(options =>
+        options.UseMySql(builder.Configuration.GetConnectionString("cadastroConnection"),
+            new MySqlServerVersion(new Version(8, 0))));
+
+builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    SeedData.Initialize(services);
+}
+
+// Configure the HTTP request pipeline.k
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
